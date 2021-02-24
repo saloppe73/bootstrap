@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-beta1): base-component.js
+ * Bootstrap (v5.0.0-beta2): base-component.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -13,16 +13,18 @@ import Data from './dom/data'
  * ------------------------------------------------------------------------
  */
 
-const VERSION = '5.0.0-beta1'
+const VERSION = '5.0.0-beta2'
 
 class BaseComponent {
   constructor(element) {
+    element = typeof element === 'string' ? document.querySelector(element) : element
+
     if (!element) {
       return
     }
 
     this._element = element
-    Data.setData(element, this.constructor.DATA_KEY, this)
+    Data.setData(this._element, this.constructor.DATA_KEY, this)
   }
 
   dispose() {
